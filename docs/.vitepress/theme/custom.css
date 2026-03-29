@@ -1,0 +1,66 @@
+:root {
+  --vp-c-brand-1: #00ff00;
+  --vp-c-brand-2: #00ffff;
+  --vp-c-brand-3: #ffff00;
+  --vp-c-brand-soft: rgba(0, 255, 0, 0.1);
+}
+
+.dark {
+  --vp-c-brand-1: #00ff00;
+  --vp-c-brand-2: #00ffff;
+  --vp-c-brand-3: #ffff00;
+  --vp-c-brand-soft: rgba(0, 255, 0, 0.15);
+}
+
+.VPHero .name {
+  background: linear-gradient(120deg, #00ff00, #00ffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.VPHero .tagline {
+  color: var(--vp-c-text-2);
+}
+
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3 {
+  color: var(--vp-c-brand-1);
+}
+
+.vp-doc a {
+  color: var(--vp-c-brand-1);
+}
+
+.VPSidebarItem .text {
+  font-weight: 500;
+}
+
+.VPNavBar .title {
+  font-weight: 600;
+}
+
+.home-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.category-card {
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.category-card:hover {
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.1);
+}
+
+.feature-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
