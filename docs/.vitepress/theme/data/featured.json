@@ -1,0 +1,27 @@
+[
+  {
+    "link": "/product/product-thinking",
+    "priority": 100,
+    "featured": true
+  },
+  {
+    "link": "/tech/tech-stack",
+    "priority": 90,
+    "featured": true
+  },
+  {
+    "link": "/growth/efficient-learning",
+    "priority": 80,
+    "featured": true
+  },
+  {
+    "link": "/operation/growth-strategy",
+    "priority": 70,
+    "featured": true
+  },
+  {
+    "link": "/tech/关于使用redis实现消息队列",
+    "priority": 60,
+    "featured": false
+  }
+]

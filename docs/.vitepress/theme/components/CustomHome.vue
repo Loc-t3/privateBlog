@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useData } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import { data as posts } from '../data/posts.data'
 
 const { Layout } = DefaultTheme
 const { frontmatter } = useData()
@@ -16,50 +17,22 @@ const categories = [
   { id: 'GROWTH', name: 'GROWTH', icon: '🌱' }
 ]
 
-const articles = ref([
-  {
-    id: 1,
-    title: '产品思维入门',
-    excerpt: '产品思维是一种以用户为中心，通过发现问题、定义问题、解决问题来创造价值的思维方式...',
-    category: 'PRODUCT',
-    date: 'JAN 15, 2024',
-    readTime: '3 MIN READ',
-    link: '/product/product-thinking'
-  },
-  {
-    id: 2,
-    title: '技术栈选择指南',
-    excerpt: '在选择技术栈时，需要考虑项目需求、团队能力、生态成熟度等因素...',
-    category: 'TECH',
-    date: 'JAN 20, 2024',
-    readTime: '4 MIN READ',
-    link: '/tech/tech-stack'
-  },
-  {
-    id: 3,
-    title: '如何高效学习',
-    excerpt: '学习是一辈子的事情，掌握正确的学习方法可以事半功倍。费曼学习法、刻意练习...',
-    category: 'GROWTH',
-    date: 'FEB 15, 2024',
-    readTime: '5 MIN READ',
-    link: '/growth/efficient-learning'
-  },
-  {
-    id: 4,
-    title: '用户增长策略',
-    excerpt: '增长是一个系统工程，需要数据驱动和持续优化。AARRR 模型：获取、激活、留存、变现、推荐...',
-    category: 'OPERATION',
-    date: 'FEB 01, 2024',
-    readTime: '6 MIN READ',
-    link: '/operation/growth-strategy'
-  }
-])
+function formatDate(dateStr: string): string {
+  if (!dateStr) return ''
+  const date = new Date(dateStr)
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+}
 
 const filteredArticles = computed(() => {
-  if (activeFilter.value === 'ALL') {
-    return articles.value
+  let articles = posts
+  if (activeFilter.value !== 'ALL') {
+    articles = articles.filter(article => article.category === activeFilter.value)
   }
-  return articles.value.filter(article => article.category === activeFilter.value)
+  return articles.map(article => ({
+    ...article,
+    formattedDate: formatDate(article.date)
+  }))
 })
 
 function scrollToSearch() {
@@ -99,8 +72,8 @@ function scrollToSearch() {
         <div class="articles-grid">
           <article
             v-for="article in filteredArticles"
-            :key="article.id"
-            :class="['article-card', `category-${article.category.toLowerCase()}`]"
+            :key="article.link"
+            :class="['article-card', `category-${article.category.toLowerCase()}`, { 'featured-card': article.featured }]"
           >
             <a :href="article.link" class="card-link">
               <div class="card-header">
@@ -108,17 +81,20 @@ function scrollToSearch() {
                   <span class="tag-icon">🏷</span>
                   {{ article.category }}
                 </span>
-                <span class="article-date">{{ article.date }}</span>
+                <span class="article-date">{{ article.formattedDate }}</span>
               </div>
               
-              <h2 class="article-title">{{ article.title }}</h2>
+              <h2 class="article-title">
+                {{ article.title }}
+                <span v-if="article.featured" class="featured-badge">★</span>
+              </h2>
               
               <p class="article-excerpt">{{ article.excerpt }}</p>
               
               <div class="card-footer">
                 <span class="read-time">
                   <span class="time-icon">🕐</span>
-                  {{ article.readTime }}
+                  {{ article.tags.slice(0, 2).join(' · ') || '阅读更多' }}
                 </span>
                 <span class="arrow-icon">↗</span>
               </div>
@@ -363,6 +339,20 @@ function scrollToSearch() {
 .article-card:hover .arrow-icon {
   transform: translate(4px, -4px);
   color: #1e40af;
+}
+
+.featured-card {
+  border-color: #1e40af;
+}
+
+.featured-card::after {
+  border-color: #1e40af;
+}
+
+.featured-badge {
+  color: #f59e0b;
+  margin-left: 0.5rem;
+  font-size: 1rem;
 }
 
 @media (max-width: 768px) {

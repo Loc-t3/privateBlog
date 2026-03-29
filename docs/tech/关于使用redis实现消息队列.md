@@ -1,3 +1,10 @@
+---
+title: 关于使用redis实现消息队列
+date: 2024-02-20
+tags: [技术, Redis, 消息队列]
+description: 深入探讨如何使用 Redis 实现消息队列，包括 List、Pub/Sub、Streams 三种方案的对比分析...
+---
+
 ### 消息队列
 #### 核心能力：解耦和削峰
 ##### 关于解耦
