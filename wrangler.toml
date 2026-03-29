@@ -1,5 +1,0 @@
-[site]
-bucket = "docs/.vitepress/dist"
-
-[build]
-command = "npm run docs:build"

@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { ref, onMounted, computed } from 'vue'
-import { useData } from 'vitepress'
+import { ref, onMounted, computed, watch } from 'vue'
+import { useData, useRouter, useRoute } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import MarkdownIt from 'markdown-it'
 import CustomHome from './CustomHome.vue'
 
 const { Layout } = DefaultTheme
 const { frontmatter, page } = useData()
+const router = useRouter()
+const route = useRoute()
 
 const showResume = ref(false)
 const resumeContent = ref('')
@@ -26,6 +28,13 @@ const isAboutPage = computed(() => {
 const isHomePage = computed(() => {
   return frontmatter.value.layout === 'home'
 })
+
+// 监听路由变化，处理 vibe 目录的重定向
+watch(() => route.path, (newPath) => {
+  if (newPath.startsWith('/vibe/') && !newPath.endsWith('.html') && !newPath.endsWith('/')) {
+    window.location.href = newPath + '.html'
+  }
+}, { immediate: true })
 
 async function toggleResume() {
   showResume.value = !showResume.value

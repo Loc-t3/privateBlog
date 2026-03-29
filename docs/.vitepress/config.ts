@@ -6,7 +6,7 @@ export const NAV_CONFIG = [
   { text: '技术', link: '/tech/', icon: '💻', description: '技术探索与实践' },
   { text: '运营', link: '/operation/', icon: '📊', description: '运营策略与增长' },
   { text: '成长', link: '/growth/', icon: '🌱', description: '个人成长与反思' },
-  { text: '创作', link: '/vibe/', icon: '🎨', description: 'Vibe Coding 创意产出' },
+  { text: 'vibe coding', link: '/vibe/', icon: '🎨', description: 'Vibe Coding 创意产出' },
   { text: '关于我', link: '/about/', icon: '👤', description: '了解更多关于我' }
 ]
 
