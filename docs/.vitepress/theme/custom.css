@@ -1,19 +1,19 @@
 :root {
-  --vp-c-brand-1: #00ff00;
-  --vp-c-brand-2: #00ffff;
-  --vp-c-brand-3: #ffff00;
-  --vp-c-brand-soft: rgba(0, 255, 0, 0.1);
+  --vp-c-brand-1: #db7734;
+  --vp-c-brand-2: #ff9966;
+  --vp-c-brand-3: #ffaa77;
+  --vp-c-brand-soft: rgba(219, 119, 52, 0.1);
 }
 
 .dark {
-  --vp-c-brand-1: #00ff00;
-  --vp-c-brand-2: #00ffff;
-  --vp-c-brand-3: #ffff00;
-  --vp-c-brand-soft: rgba(0, 255, 0, 0.15);
+  --vp-c-brand-1: #db7734;
+  --vp-c-brand-2: #ff9966;
+  --vp-c-brand-3: #ffaa77;
+  --vp-c-brand-soft: rgba(219, 119, 52, 0.15);
 }
 
 .VPHero .name {
-  background: linear-gradient(120deg, #00ff00, #00ffff);
+  background: linear-gradient(120deg, #db7734, #ff9966);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
