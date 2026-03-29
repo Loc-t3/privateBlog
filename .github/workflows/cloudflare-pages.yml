@@ -28,6 +28,15 @@ jobs:
       - name: Build
         run: npm run docs:build
 
+      - name: Verify build output
+        run: |
+          echo "Checking build output directory..."
+          ls -la docs/.vitepress/dist
+          if [ ! -d "docs/.vitepress/dist" ]; then
+            echo "Error: Build output directory not found!"
+            exit 1
+          fi
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:

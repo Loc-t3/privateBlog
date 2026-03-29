@@ -30,11 +30,13 @@ const isHomePage = computed(() => {
 })
 
 // 监听路由变化，处理 vibe 目录的重定向
-watch(() => route.path, (newPath) => {
-  if (newPath.startsWith('/vibe/') && !newPath.endsWith('.html') && !newPath.endsWith('/')) {
-    window.location.href = newPath + '.html'
-  }
-}, { immediate: true })
+onMounted(() => {
+  watch(() => route.path, (newPath) => {
+    if (newPath.startsWith('/vibe/') && !newPath.endsWith('.html') && !newPath.endsWith('/')) {
+      window.location.href = newPath + '.html'
+    }
+  }, { immediate: true })
+})
 
 async function toggleResume() {
   showResume.value = !showResume.value
