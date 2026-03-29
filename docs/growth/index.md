@@ -9,3 +9,4 @@ title: 成长
 ## 文章列表
 
 - [如何高效学习](/growth/efficient-learning)
+- [使用 Cloudflare Pages 部署静态网站](/growth/cloudflare-pages-deploy)
