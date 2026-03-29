@@ -98,6 +98,11 @@ onMounted(async () => {
 .home-wrapper {
   min-height: 100vh;
 }
+
+/* 隐藏首页的 Hero 区域 */
+.home-wrapper .VPHomeHero {
+  display: none !important;
+}
 </style>
 
 <style scoped>

@@ -23,6 +23,15 @@ privateBlog/
 │   └── .vitepress/
 │       ├── config.ts          # VitePress配置
 │       └── theme/             # 主题定制
+│           ├── components/    # Vue组件
+│           │   ├── CustomHome.vue    # 首页组件
+│           │   └── CustomLayout.vue  # 布局组件
+│           ├── data/          # 数据文件
+│           │   ├── posts.data.ts     # 文章数据加载器
+│           │   ├── featured.json     # 文章优先级配置
+│           │   └── types.ts          # 类型定义
+│           ├── custom.css     # 全局样式
+│           └── index.ts       # 主题入口
 ├── .github/
 │   └── workflows/
 │       └── deploy.yml         # GitHub Actions部署配置
@@ -46,6 +55,39 @@ export const NAV_CONFIG = [
   { text: '关于我', link: '/about/', icon: '👤', description: '了解更多关于我' }
 ]
 ```
+
+### 文章优先级配置
+
+首页文章展示顺序由 `docs/.vitepress/theme/data/featured.json` 控制：
+
+```json
+[
+  {
+    "link": "/product/product-thinking",
+    "priority": 100,
+    "featured": true
+  },
+  {
+    "link": "/tech/tech-stack",
+    "priority": 90,
+    "featured": true
+  }
+]
+```
+
+**配置说明：**
+
+| 字段 | 说明 |
+|------|------|
+| `link` | 文章链接路径 |
+| `priority` | 优先级，数值越大越靠前 |
+| `featured` | 是否为精选文章，`true` 时标题旁显示 ★ 标记 |
+
+**操作方式：**
+
+1. **置顶文章**：将 `priority` 设置为较大值（如 100）
+2. **标记精选**：设置 `"featured": true`，文章卡片边框高亮
+3. **新增配置**：在数组中添加新对象，填写文章链接和优先级
 
 ### 添加新分类
 
@@ -108,12 +150,31 @@ npm run docs:preview
 title: 文章标题
 date: 2024-01-15
 tags: [标签1, 标签2]
+description: 文章摘要，会显示在首页卡片中...
 ---
 
 # 文章标题
 
 文章内容...
 ```
+
+**Frontmatter 字段说明：**
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `title` | 是 | 文章标题，显示在首页和文章页 |
+| `date` | 是 | 发布日期，格式 `YYYY-MM-DD` |
+| `tags` | 否 | 标签数组，显示在卡片底部 |
+| `description` | 否 | 文章摘要，不填则自动截取正文前100字 |
+
+### 首页文章排序规则
+
+首页文章按以下规则排序：
+
+1. **优先级排序**：在 `featured.json` 中配置的 `priority` 值越大越靠前
+2. **日期排序**：未配置优先级的文章按日期倒序排列
+
+**推荐做法：** 重要文章在 `featured.json` 中配置高优先级，普通文章无需配置，自动按日期排序。
 
 ### Markdown 语法
 
@@ -128,5 +189,4 @@ tags: [标签1, 标签2]
 - [VitePress](https://vitepress.dev/) - 静态站点生成器
 - [Vue 3](https://vuejs.org/) - 前端框架
 - [markdown-it](https://github.com/markdown-it/markdown-it) - Markdown 解析器
-- GitHub Actions - CI/CD
-- GitHub Pages - 静态托管
+- Vercel - 静态托管
