@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>视频作品展示</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+    }
+    
+    .container {
+      background: white;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 900px;
+      width: 100%;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+    
+    h1 {
+      color: #f5576c;
+      margin-bottom: 1rem;
+      font-size: 2.5rem;
+    }
+    
+    .description {
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+    
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 */
+      height: 0;
+      margin: 2rem 0;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+    
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .video-info {
+      margin-top: 1.5rem;
+    }
+    
+    .video-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    
+    .video-desc {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      color: #f5576c;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 视频作品</h1>
+    <p class="description">Vibe Coding 创意作品演示视频</p>
+    
+    <div class="video-wrapper">
+      <!-- 方式 2: 嵌入 B 站视频 -->
+      <!-- 请替换为你自己的 B 站视频 BV 号 -->
+      <iframe 
+        src="https://player.bilibili.com/player.html?bvid=BV1xx411c7mD&page=1&high_quality=1" 
+        scrolling="no" 
+        border="0" 
+        frameborder="0" 
+        framespacing="0" 
+        allowfullscreen="true" 
+        style="width: 100%; height: 100%;"
+        sandbox="allow-same-origin allow-scripts allow-presentation allow-forms">
+      </iframe>
+    </div>
+    
+    <div class="video-info">
+      <h3 class="video-title">作品名称</h3>
+      <p class="video-desc">在这里描述你的作品创意、技术实现和亮点...</p>
+    </div>
+    
+    <a href="/vibe/" class="back-link">← 返回创作列表</a>
+  </div>
+</body>
+</html>
